@@ -262,10 +262,18 @@
       line-height: 1.6;
     }
 
-    .chem-eq {
+    /* 單行防折斷化學式樣式 */
+    .chem-eq-row {
       font-weight: 800;
       color: var(--chalk-green);
+      white-space: nowrap;
+      overflow-x: auto;
+      font-size: clamp(0.78rem, 2.5vw, 0.92rem);
+      padding: 2px 0;
+      display: block;
+      scrollbar-width: none;
     }
+    .chem-eq-row::-webkit-scrollbar { display: none; }
 
     .note-pill {
       display: inline-block;
@@ -623,7 +631,7 @@
           <div class="sub-head">1. 布洛酸 (Acid)</div>
           <p>含有 <span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">可解離出 H⁺ (質子)</span> 的人。</p>
           <div class="reaction-box" style="margin-top:6px;">
-            例：NH₃(aq) → <span class="cloze">NH₂⁻</span> + H⁺<br>
+            <div class="chem-eq-row">NH₃(aq) → <span class="cloze">NH₂⁻</span> + H⁺</div>
             <span style="color:var(--chalk-yellow); font-size:0.82rem;">因此 NH₃ 是一種布洛酸</span>
           </div>
         </div>
@@ -632,7 +640,7 @@
           <div class="sub-head">2. 布洛鹼 (Base)</div>
           <p>可與 <span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">H⁺ (質子) 結合</span> 的人。</p>
           <div class="reaction-box" style="margin-top:6px;">
-            例：NH₃ + H⁺ → <span class="cloze">NH₄⁺</span><br>
+            <div class="chem-eq-row">NH₃ + H⁺ → <span class="cloze">NH₄⁺</span></div>
             <span style="color:var(--chalk-cyan); font-size:0.82rem;">因此 NH₃ 也是一種布洛鹼</span>
           </div>
         </div>
@@ -667,7 +675,7 @@
             <text x="140" y="68" fill="#fdba74" font-size="9" text-anchor="middle">(兩性分子)</text>
 
             <!-- 往左釋出質子 (當布洛酸) -->
-            <path d="M 112 55 L 45 55" stroke="#fde047" stroke-width="2" marker-end="url(#arrowY)" stroke-dasharray="3,2"/>
+            <path d="M 112 55 L 45 55" stroke="#fde047" stroke-width="2" stroke-dasharray="3,2"/>
             <text x="78" y="45" fill="#fde047" font-size="10" text-anchor="middle">- H⁺</text>
             <rect x="5" y="40" width="40" height="30" rx="5" fill="rgba(253, 224, 71, 0.1)" stroke="#fde047"/>
             <text x="25" y="60" fill="#fde047" font-size="11" font-weight="bold" text-anchor="middle">OH⁻</text>
@@ -680,18 +688,22 @@
           </svg>
         </div>
 
+        <!-- 反應 ①：已解決同一行不換行 -->
         <div class="reaction-box">
-          <div class="sub-head" style="color:var(--chalk-yellow);">反應 ①：HCO₃⁻ + H₂O ⇌ OH⁻ + H₂CO₃</div>
-          <div style="font-size:0.84rem; margin:4px 0;">
+          <div class="sub-head" style="color:var(--chalk-yellow); margin-bottom:2px;">反應 ①</div>
+          <div class="chem-eq-row">HCO₃⁻ + H₂O ⇌ OH⁻ + H₂CO₃</div>
+          <div style="font-size:0.84rem; margin:6px 0 4px 0;">
             • H₂O 釋出 H⁺ 變 OH⁻ 👉 <span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">布洛酸</span><br>
             • HCO₃⁻ 接 H⁺ 變 H₂CO₃ 👉 <span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">布洛鹼</span>
           </div>
           <div class="note-pill">質子轉移：H₂O 轉移 H⁺ 給 HCO₃⁻</div>
         </div>
 
+        <!-- 反應 ② -->
         <div class="reaction-box">
-          <div class="sub-head" style="color:var(--chalk-cyan);">反應 ②：HCl + H₂O → H₃O⁺ + Cl⁻</div>
-          <div style="font-size:0.84rem; margin:4px 0;">
+          <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:2px;">反應 ②</div>
+          <div class="chem-eq-row">HCl + H₂O → H₃O⁺ + Cl⁻</div>
+          <div style="font-size:0.84rem; margin:6px 0 4px 0;">
             • HCl 提供 H⁺ 👉 <span style="color:var(--chalk-yellow); font-weight:bold;">布洛酸</span><br>
             • H₂O 接受 H⁺ 👉 <span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">布洛鹼</span>
           </div>
@@ -725,8 +737,8 @@
             原因：兩者酸性強弱不同！
           </div>
           <div style="font-size:0.84rem; line-height:1.7;">
-            • H₂O ⇌ H⁺ + OH⁻ （<i>解離平衡常數K</i>）<br>
-            • HCO₃⁻ ⇌ H⁺ + CO₃²⁻ （<i>解離平衡常數K</i>）<br>
+            • H₂O ⇌ H⁺ + OH⁻ （<i>解離平衡常數 K</i>）<br>
+            • HCO₃⁻ ⇌ H⁺ + CO₃²⁻ （<i>解離平衡常數 K</i>）<br>
             <div style="color:var(--chalk-cyan); font-weight:800; margin-top:2px;">
               👉 酸性：<span class="cloze">H₂O &gt; HCO₃⁻</span>（解離優先權）
             </div>
@@ -751,6 +763,10 @@
             而是 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">相對</span> 的！
           </div>
         </div>
+
+        <div class="note-pill" style="display:block; text-align:center; background:rgba(192, 132, 252, 0.18); color:var(--ext-title); border:1px solid var(--ext-badge-border);">
+          💡 課堂初學：以「釋出 H⁺ 傾向」理解相對性（文末延伸有進階多重平衡嚴密破解！）
+        </div>
       </div>
 
       <!-- 第 4 欄：平衡方向判斷與共軛酸鹼對 -->
@@ -763,9 +779,10 @@
         <!-- 範例 1 -->
         <div class="logic-item">
           <div class="logic-header" style="color:var(--chalk-yellow);">
-            <span>題型 1：NH₄⁺ + OH⁻ ⇌ H₂O + NH₃</span>
+            <span>題型 1</span>
           </div>
-          <div style="font-size:0.84rem; margin-top:2px;">
+          <div class="chem-eq-row" style="margin-bottom:4px;">NH₄⁺ + OH⁻ ⇌ H₂O + NH₃</div>
+          <div style="font-size:0.84rem;">
             ① <b>平衡方向</b>：向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">右</span><br>
             理由：<span class="cloze">強酸 + 強鹼 → 弱酸 + 弱鹼</span><br>
             • 酸性：<span class="cloze">NH₄⁺ &gt; H₂O</span><br>
@@ -779,9 +796,10 @@
         <!-- 範例 2 -->
         <div class="logic-item">
           <div class="logic-header" style="color:var(--chalk-cyan);">
-            <span>題型 2：HCO₃⁻ + NH₃ ⇌ NH₄⁺ + CO₃²⁻</span>
+            <span>題型 2</span>
           </div>
-          <div style="font-size:0.84rem; margin-top:2px;">
+          <div class="chem-eq-row" style="margin-bottom:4px;">HCO₃⁻ + NH₃ ⇌ NH₄⁺ + CO₃²⁻</div>
+          <div style="font-size:0.84rem;">
             ① <b>平衡方向</b>：向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">左</span><br>
             理由：鹼性：NH₃ &lt; CO₃²⁻（或酸性 NH₄⁺ &gt; HCO₃⁻）<br>
             ② <b>正反應角色判定</b>：<br>
@@ -803,42 +821,103 @@
     <div class="extension-container">
       <div class="extension-header">
         <div class="extension-title">
-          <span>🧠 【展氏新解】延伸思維：酸鹼強弱決定化學命運</span>
+          <span>🧠 【展氏新解】延伸思維：從「教學直觀」跨越到「嚴謹平衡熱力學」</span>
         </div>
-        <span class="extension-badge">競爭平衡 · 深入推導</span>
+        <span class="extension-badge">多重平衡競逐 · 深度昇華</span>
       </div>
 
       <div class="extension-grid">
-        <!-- 區塊 A -->
+        <!-- 區塊 A：打破直觀，回歸本質 -->
         <div class="ext-box">
           <div style="font-weight:800; color:var(--chalk-cyan); font-size:0.95rem;">
-            📌 A. 為什麼 HCO₃⁻ 在水中表現為水解（產生OH⁻）而非酸解離？
+            📌 A. 破除迷思：化學反應中不存在「質子優先權」
           </div>
           <p style="font-size:0.85rem; color:var(--text-sub);">
-            兩性酸式鹽陰離子（如 HCO₃⁻、HS⁻、HPO₄²⁻）在水中同時存在兩種競爭反應：
+            課堂初學時，常以「誰酸性強誰先解離」幫助同學快速建立相對性直觀；但在嚴謹物理化學中，<b>水溶液中的多重平衡是「同時建立」的</b>，不存在水釋放質子排擠其他物質的先後順序：
           </p>
-          <ul>
-            <li><b>解離（當酸）</b>：HCO₃⁻ ⇌ H⁺ + CO₃²⁻，<i>K</i><sub>a2</sub> ≈ 4.7 × 10<sup>-11</sup></li>
-            <li><b>水解（當鹼）</b>：HCO₃⁻ + H₂O ⇌ H₂CO₃ + OH⁻，<i>K</i><sub>b</sub> = <i>K</i><sub>w</sub> / <i>K</i><sub>a1</sub> = 10<sup>-14</sup> / (4.4 × 10<sup>-7</sup>) ≈ 2.3 × 10<sup>-8</sup></li>
+          <ul style="font-size:0.84rem; line-height:1.6;">
+            <li><b>HCO₃⁻ 在純水中其實有當布洛酸！</b><br>
+              平衡式：HCO₃⁻ + H₂O ⇌ CO₃²⁻ + H₃O⁺（<i>K</i><sub>a2</sub> ≈ 4.7 × 10⁻¹¹）[span_4](start_span)[span_4](end_span)
+            </li>
+            <li><b>它同時也在當布洛鹼（水解作用）！</b><br>
+              平衡式：HCO₃⁻ + H₂O ⇌ H₂CO₃ + OH⁻（<i>K</i><sub>b</sub> ≈ 2.3 × 10⁻⁸）[span_5](start_span)[span_5](end_span)
+            </li>
           </ul>
-          <div class="note-pill" style="align-self:flex-start;">
-            數值比較：<i>K</i><sub>b</sub> (2.3 × 10⁻⁸) &gt; <i>K</i><sub>a2</sub> (4.7 × 10⁻¹¹)，故水溶液呈弱鹼性！
+          <div class="note-pill" style="align-self:flex-start; margin-top:2px;">
+            💡 本質判據：<i>K</i><sub>b</sub> (2.3 × 10⁻⁸) ≫ <i>K</i><sub>a2</sub> (4.7 × 10⁻¹¹)，故產生的 OH⁻ 遠大於 H₃O⁺，溶液整體呈弱鹼性[span_6](start_span)[span_6](end_span)！
           </div>
         </div>
 
-        <!-- 區塊 B -->
+        <!-- 區塊 B：競爭雙軌與平衡常數推力 -->
         <div class="ext-box">
           <div style="font-weight:800; color:var(--chalk-orange); font-size:0.95rem;">
-            📌 B. 共軛酸鹼對的「反比定律」與平衡移動推力
+            📌 B. 兩性離子的命運密碼：<i>K</i><sub>a</sub> 與 <i>K</i><sub>b</sub> 的數值拔河
           </div>
           <p style="font-size:0.85rem; color:var(--text-sub);">
-            在水溶液共軛體系中，酸的強度與其共軛鹼的強度呈完全反比關係（<i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> = <i>K</i><sub>w</sub>）：
+            判斷兩性酸式鹽水溶液呈「酸性」還是「鹼性」，核心在於<b>自身酸解離能力</b>與<b>水解接受質子能力</b>的勝負：
           </p>
-          <ul>
-            <li><b>酸越強</b>，其共軛鹼結合質子的能力<b>越弱</b>（例如 HCl 強酸，Cl⁻ 幾乎無結合質子能力）。</li>
-            <li><b>平衡推動力</b>：化學平衡永遠由「推質子能力強的酸」推向「保留質子能力強的弱酸」。</li>
-            <li>在反應 HCO₃⁻ + NH₃ ⇌ NH₄⁺ + CO₃²⁻ 中，因 NH₄⁺ 之酸性強於 HCO₃⁻，逆反應強烈推向左邊！</li>
-          </ul>
+
+          <table style="width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:4px;">
+            <tr style="border-bottom:1px solid var(--card-border); color:var(--chalk-cyan);">
+              <th style="padding:4px; text-align:left;">物種</th>
+              <th style="padding:4px; text-align:center;">酸解離 <i>K</i><sub>a</sub></th>
+              <th style="padding:4px; text-align:center;">水解 <i>K</i><sub>b</sub></th>
+              <th style="padding:4px; text-align:center;">水溶液酸鹼性</th>
+            </tr>
+            <tr style="border-bottom:1px solid var(--card-border);">
+              <td style="padding:4px;"><b>HCO₃⁻</b></td>
+              <td style="padding:4px; text-align:center;">4.7 × 10⁻¹¹[span_7](start_span)[span_7](end_span)</td>
+              <td style="padding:4px; text-align:center;">2.3 × 10⁻⁸[span_8](start_span)[span_8](end_span)</td>
+              <td style="padding:4px; text-align:center; color:var(--chalk-cyan); font-weight:bold;"><i>K</i><sub>b</sub> &gt; <i>K</i><sub>a</sub> 呈弱鹼性[span_9](start_span)[span_9](end_span)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--card-border);">
+              <td style="padding:4px;"><b>HSO₄⁻</b></td>
+              <td style="padding:4px; text-align:center;">1.2 × 10⁻²</td>
+              <td style="padding:4px; text-align:center;">極小（~ 10⁻¹⁶）</td>
+              <td style="padding:4px; text-align:center; color:var(--chalk-yellow); font-weight:bold;"><i>K</i><sub>a</sub> ≫ <i>K</i><sub>b</sub> 呈強酸性</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;"><b>H₂PO₄⁻</b></td>
+              <td style="padding:4px; text-align:center;">6.2 × 10⁻⁸</td>
+              <td style="padding:4px; text-align:center;">1.4 × 10⁻¹²</td>
+              <td style="padding:4px; text-align:center; color:var(--chalk-yellow); font-weight:bold;"><i>K</i><sub>a</sub> &gt; <i>K</i><sub>b</sub> 呈弱酸性</td>
+            </tr>
+          </table>
+
+          <div style="font-size:0.82rem; color:var(--text-sub); margin-top:6px;">
+            💬 <b>展氏名言</b>：化學是動態的機率平衡，勝者並未消滅敗者，只是它的聲音比較大。
+          </div>
+        </div>
+      </div>
+
+      <!-- 區塊 C：多重競爭平衡向量圖 -->
+      <div class="ext-box" style="margin-top:2px;">
+        <div style="font-weight:800; color:var(--ext-title); font-size:0.95rem;">
+          📊 C. 【平衡微觀競爭圖解】：HCO₃⁻ 溶於水的雙軌並行
+        </div>
+        <div style="background:var(--section-box-bg); padding:10px; border-radius:6px; margin-top:4px;">
+          <svg viewBox="0 0 600 130" style="max-height:120px;">
+            <!-- 中心 HCO3- -->
+            <rect x="220" y="45" width="160" height="40" rx="8" fill="rgba(192, 132, 252, 0.25)" stroke="#a855f7" stroke-width="2"/>
+            <text x="300" y="70" fill="#f1f5f9" font-size="14" font-weight="900" text-anchor="middle">HCO₃⁻ ＋ H₂O</text>
+
+            <!-- 向上軌道：當鹼水解 (主導) -->
+            <path d="M 380 55 C 440 30, 480 30, 510 30" fill="none" stroke="#67e8f9" stroke-width="3.5"/>
+            <text x="445" y="24" fill="#67e8f9" font-size="11" font-weight="bold">水解當鹼 (Kb ≈ 2.3×10⁻⁸)</text>
+            <text x="555" y="34" fill="#67e8f9" font-size="12" font-weight="bold" text-anchor="middle">OH⁻ ＋ H₂CO₃</text>
+            <text x="445" y="42" fill="#86efac" font-size="10">★ 強勢主導 (濃度高)</text>
+
+            <!-- 向下軌道：當酸解離 (次要) -->
+            <path d="M 380 75 C 440 100, 480 100, 510 100" fill="none" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <text x="445" y="94" fill="#fde047" font-size="11">解離當酸 (Ka2 ≈ 4.7×10⁻¹¹)</text>
+            <text x="555" y="104" fill="#fdba74" font-size="12" text-anchor="middle">H₃O⁺ ＋ CO₃²⁻</text>
+            <text x="445" y="114" fill="#cbd5e1" font-size="10">弱勢微量 (濃度極低)</text>
+
+            <!-- 左側水自身電離背景 -->
+            <path d="M 220 65 L 120 65" fill="none" stroke="#64748b" stroke-width="1.5"/>
+            <text x="170" y="58" fill="#94a3b8" font-size="10" text-anchor="middle">水自身電離背景</text>
+            <text x="60" y="69" fill="#94a3b8" font-size="11" text-anchor="middle">H⁺ ＋ OH⁻</text>
+          </svg>
         </div>
       </div>
     </div>
@@ -889,16 +968,16 @@
       },
       {
         id: 2,
-        level: "中階 · 質子優先權與相對性",
-        question: "板書中提出核心疑問：「為什麼碳酸氫根離子 (HCO₃⁻) 在純水中不能表現為布洛酸？」主要原因為何？",
+        level: "中階 · 兩性離子平衡",
+        question: "碳酸氫根離子 (HCO₃⁻) 兼具布洛酸與布洛鹼的兩性性質，為何碳酸氫鈉水溶液實測呈弱鹼性？",
         options: [
-          "A. 因為 HCO₃⁻ 分子中根本沒有任何質子 (H⁺) 可以解離",
-          "B. 因為碳酸氫根在水中只能與強酸反應，不能與任何水分子共存",
-          "C. 因為水的自身解離酸性大於 HCO₃⁻，水擁有產生質子的優先權，使 HCO₃⁻ 只能被動扮演接受質子的鹼",
-          "D. 因為 HCO₃⁻ 是強酸，在水中會瞬間完全解離"
+          "A. 因為水優先完全釋放質子，迫使 HCO₃⁻ 只能被動接受質子，無法建立酸平衡",
+          "B. 因為碳酸氫根在水中接受質子的水解常數 (Kb ≈ 2.3 × 10⁻⁸) 大於其釋放質子的酸解離常數 (Ka2 ≈ 4.7 × 10⁻¹¹)，使溶液中 OH⁻ 濃度高於 H₃O⁺",
+          "C. 因為 HCO₃⁻ 分子中雖然有氫，但其共價鍵極其牢固，完全無法游離出質子",
+          "D. 因為在任何兩性體系中，布洛酸的作用必定比布洛鹼的作用弱"
         ],
-        answer: 2,
-        explanation: "【展氏新解解析】：<br>1. 板書核心第 3 欄指出：H₂O 的解離程度 大於 HCO₃⁻ 的解離程度。<br>2. H₂O 比 HCO₃⁻ 更容易解離產生 H⁺，因此 H₂O 取得釋放 H⁺ 的優先權，迫使 HCO₃⁻ 只能接受質子轉化為 H₂CO₃，顯現出酸鹼角色的「相對性」。"
+        answer: 1,
+        explanation: "【展氏新解嚴謹解析】：<br>1. 水溶液中的酸鹼平衡是同時建立的，不存在「質子優先權」的排擠規則[span_10](start_span)[span_10](end_span)。<br>2. HCO₃⁻ 溶於水同時進行「酸解離釋出質子 (Ka2)」與「水解接受質子 (Kb)」，因 Kb (2.3 × 10⁻⁸) 遠大於 Ka2 (4.7 × 10⁻¹¹)，水解產生的 OH⁻ 佔絕對優勢，故整體測量為弱鹼性[span_11](start_span)[span_11](end_span)！"
       },
       {
         id: 3,
