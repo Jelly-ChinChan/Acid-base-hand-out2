@@ -262,7 +262,6 @@
       line-height: 1.6;
     }
 
-    /* 單行防折斷化學式樣式 */
     .chem-eq-row {
       font-weight: 800;
       color: var(--chalk-green);
@@ -688,7 +687,7 @@
           </svg>
         </div>
 
-        <!-- 反應 ①：同一行不折斷 -->
+        <!-- 反應 ① -->
         <div class="reaction-box">
           <div class="sub-head" style="color:var(--chalk-yellow); margin-bottom:2px;">反應 ①</div>
           <div class="chem-eq-row">HCO₃⁻ + H₂O ⇌ OH⁻ + H₂CO₃</div>
@@ -737,8 +736,8 @@
             原因：兩者酸性強弱不同！
           </div>
           <div style="font-size:0.84rem; line-height:1.7;">
-            • H₂O ⇌ H⁺ + OH⁻,（<i>解離平衡常數 K</i>）<br>
-            • HCO₃⁻ ⇌ H⁺ + CO₃²⁻,（<i>解離平衡常數 K</i>）<br>
+            • H₂O ⇌ H⁺ + OH⁻ （<i>解離平衡常數 K</i>）<br>
+            • HCO₃⁻ ⇌ H⁺ + CO₃²⁻ （<i>解離平衡常數 K</i>）<br>
             <div style="color:var(--chalk-cyan); font-weight:800; margin-top:2px;">
               👉 酸性：<span class="cloze">H₂O &gt; HCO₃⁻</span>（解離優先權）
             </div>
@@ -765,11 +764,11 @@
         </div>
 
         <div class="note-pill" style="display:block; text-align:center; background:rgba(192, 132, 252, 0.18); color:var(--ext-title); border:1px solid var(--ext-badge-border);">
-          💡 課堂初學：以「釋出 H⁺ 傾向」理解相對性（文末延伸有多重平衡嚴格定義解析！）
+          💡 課堂初學：以「釋出 H⁺ 傾向」理解相對性（文末延伸有進階多重平衡嚴密破解！）
         </div>
       </div>
 
-      <!-- 第 4 欄：平衡方向判斷與共軛酸鹼對 -->
+      <!-- 第 4 欄：平衡方向判斷與共軛酸鹼對（已新增逆反應角色判定） -->
       <div class="col-card">
         <div class="col-title">
           <span>四、平衡方向判定</span>
@@ -786,10 +785,23 @@
             ① <b>平衡方向</b>：向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">右</span><br>
             理由：<span class="cloze">強酸 + 強鹼 → 弱酸 + 弱鹼</span><br>
             • 酸性：<span class="cloze">NH₄⁺ &gt; H₂O</span><br>
-            • 鹼性：<span class="cloze">OH⁻ &gt; NH₃</span><br>
-            ② <b>正反應角色判定</b>：<br>
-            • 布洛酸：<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">NH₄⁺</span><br>
-            • 布洛鹼：<span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">OH⁻</span>
+            • 鹼性：<span class="cloze">OH⁻ &gt; NH₃</span>
+            
+            <!-- 正逆反應角色判定並排區塊 -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin:6px 0; background:rgba(0,0,0,0.22); padding:6px 8px; border-radius:6px; border:1px dashed var(--card-border);">
+              <div>
+                <b style="color:var(--chalk-cyan); font-size:0.82rem;">② 正反應角色：</b><br>
+                • 布洛酸：<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">NH₄⁺</span><br>
+                • 布洛鹼：<span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">OH⁻</span>
+              </div>
+              <div>
+                <b style="color:var(--chalk-orange); font-size:0.82rem;">逆反應角色：</b><br>
+                • 布洛酸：<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">H₂O</span><br>
+                • 布洛鹼：<span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">NH₃</span>
+              </div>
+            </div>
+
+            ③ <b>共軛酸鹼對</b>：👉 <span class="cloze" style="color:var(--chalk-orange); font-weight:bold;">NH₄⁺ / NH₃</span> 及 <span class="cloze" style="color:var(--chalk-orange); font-weight:bold;">H₂O / OH⁻</span>
           </div>
         </div>
 
@@ -801,10 +813,22 @@
           <div class="chem-eq-row" style="margin-bottom:4px;">HCO₃⁻ + NH₃ ⇌ NH₄⁺ + CO₃²⁻</div>
           <div style="font-size:0.84rem;">
             ① <b>平衡方向</b>：向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">左</span><br>
-            理由：鹼性：NH₃ &lt; CO₃²⁻（或酸性 NH₄⁺ &gt; HCO₃⁻）<br>
-            ② <b>正反應角色判定</b>：<br>
-            • 布洛酸：<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">HCO₃⁻</span><br>
-            • 布洛鹼：<span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">NH₃</span><br>
+            理由：鹼性：NH₃ &lt; CO₃²⁻（或酸性 NH₄⁺ &gt; HCO₃⁻）
+            
+            <!-- 正逆反應角色判定並排區塊 -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin:6px 0; background:rgba(0,0,0,0.22); padding:6px 8px; border-radius:6px; border:1px dashed var(--card-border);">
+              <div>
+                <b style="color:var(--chalk-cyan); font-size:0.82rem;">② 正反應角色：</b><br>
+                • 布洛酸：<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">HCO₃⁻</span><br>
+                • 布洛鹼：<span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">NH₃</span>
+              </div>
+              <div>
+                <b style="color:var(--chalk-orange); font-size:0.82rem;">逆反應角色：</b><br>
+                • 布洛酸：<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">NH₄⁺</span><br>
+                • 布洛鹼：<span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">CO₃²⁻</span>
+              </div>
+            </div>
+
             ③ <b>共軛酸鹼對 (Conjugate Pair)</b>：<br>
             👉 <span class="cloze" style="color:var(--chalk-orange); font-weight:bold;">HCO₃⁻ / CO₃²⁻</span> 及 <span class="cloze" style="color:var(--chalk-orange); font-weight:bold;">NH₄⁺ / NH₃</span>
           </div>
