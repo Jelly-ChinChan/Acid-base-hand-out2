@@ -1298,29 +1298,41 @@
 
     renderQuiz();
 
-        // 講義點閱次數自動累加與顯示 (使用穩定版 Hits API)
+            // 講義點閱次數自動累加與顯示 (防快取穩定版)
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
-      // 網址識別碼，自動依據您的 github 專案網址計算
-      const pageId = "zhan-chem-acid-base-2";
+      // 專屬頁面標識，加上時間戳記防止快取
+      const timestamp = new Date().getTime();
+      const pageKey = "y-chinchan-acid-base-2";
+      const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
-      fetch(`https://hits.seeyoufarm.com/api/count/incr/badge.json?url=https://y-chinchan.github.io/${pageId}&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false`)
-        .then(res => res.json())
+      fetch(apiUrl)
+        .then(res => {
+          if (!res.ok) throw new Error("API 狀態碼異常");
+          return res.json();
+        })
         .then(data => {
-          // API 會直接回傳點閱數字
-          if (data && data.total) {
-            counterEl.innerText = Number(data.total).toLocaleString();
-          } else if (data && data.today) {
-            counterEl.innerText = Number(data.today).toLocaleString();
+          if (data && typeof data.count !== "undefined") {
+            counterEl.innerText = Number(data.count).toLocaleString();
           } else {
-            counterEl.innerText = "1";
+            // 若未取得有效數字，讀取本地暫存
+            updateLocalFallback();
           }
         })
         .catch(err => {
-          console.warn("計數器載入異常：", err);
-          counterEl.innerText = "1";
+          console.warn("線上計數異常，切換至本地增量：", err);
+          updateLocalFallback();
         });
+
+      // 備用機制：若遠端伺服器遭瀏覽器擴充套件阻擋，仍會依造訪累加本地點閱
+      function updateLocalFallback() {
+        let count = parseInt(localStorage.getItem("local_pv_" + pageKey) || "0", 10);
+        count += 1;
+        localStorage.setItem("local_pv_" + pageKey, count);
+        counterEl.innerText = count.toLocaleString();
+      }
     })();
+
 
   </script>
 </body>
